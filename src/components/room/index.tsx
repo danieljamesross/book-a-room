@@ -1,7 +1,9 @@
 'use client';
 
 import Button from '@/components/ui/button';
+
 import styles from './room.module.css';
+
 export interface RoomProps {
   name: string;
   spots: number;

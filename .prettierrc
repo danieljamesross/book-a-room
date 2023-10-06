@@ -6,12 +6,12 @@
     "^@/contexts/(.*)$",
     "^@/pages/(.*)$",
     "^@/components/(.*)$",
-    "^style$",
+    "^.module",
     "^[./]"
   ],
   "plugins": [
-    "@trivago/prettier-plugin-sort-imports",
-    "prettier-plugin-organize-imports"
+    "prettier-plugin-organize-imports",
+    "@trivago/prettier-plugin-sort-imports"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
