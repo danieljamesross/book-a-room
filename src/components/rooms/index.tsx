@@ -1,29 +1,23 @@
-import Room, { RoomProps } from '@/components/room';
+'use client';
+
+import { useBookingContext } from '@/contexts/bookingContext';
+
+import Room from '@/components/room';
 import RoomPopup from '@/components/room-popup';
 
 import styles from './rooms.module.css';
 
-const Rooms = async () => {
-  const roomsData = await fetch('https://wetransfer.github.io/rooms.json').then(
-    (data) => data.text()
-  );
+const Rooms = () => {
+  const { updatedRooms } = useBookingContext();
 
-  if (!roomsData) return <>Error</>;
-
-  const parsedRoomsData: RoomProps[] = JSON.parse(roomsData).rooms;
-
-  if (!parsedRoomsData) return <>Error</>;
+  const mapableRooms = Array.from(updatedRooms);
 
   return (
     <menu className={styles.cards}>
-      {parsedRoomsData.map(({ name, spots, thumbnail }) => (
-        <Room name={name} spots={spots} thumbnail={thumbnail} key={name} />
+      {mapableRooms.map(([key, { name, spots, thumbnail }]) => (
+        <Room name={name} spots={spots} thumbnail={thumbnail} key={key} />
       ))}
-      <RoomPopup
-        name={parsedRoomsData[0].name}
-        spots={parsedRoomsData[0].spots}
-        thumbnail={parsedRoomsData[0].thumbnail}
-      />
+      <RoomPopup />
     </menu>
   );
 };

@@ -1,4 +1,4 @@
-import Rooms from '@/components/rooms';
+import BookableRooms from '@/components/bookable-rooms';
 
 import styles from './page.module.css';
 
@@ -12,7 +12,7 @@ export default function Home() {
           ultricies donec risus sodales. Tempus quis et.
         </h2>
       </header>
-      <Rooms />
+      <BookableRooms />
     </main>
   );
 }

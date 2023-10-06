@@ -30,7 +30,7 @@
   place-items: center;
 
   @media screen and (width >= 800px) {
-    width: 50%;
+    min-width: 50%;
   }
 }
 

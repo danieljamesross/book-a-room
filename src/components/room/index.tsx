@@ -1,5 +1,7 @@
 'use client';
 
+import { useBookingContext } from '@/contexts/bookingContext';
+
 import { POPUP_ID } from '@/components/room-popup';
 import Button from '@/components/ui/button';
 
@@ -12,11 +14,12 @@ export interface RoomProps {
 }
 
 const Room = ({ name, spots, thumbnail }: RoomProps) => {
+  const { setCurrentRoom } = useBookingContext();
   const handleClick = () => {
     const roomPopup = document.querySelector<HTMLDialogElement>(`#${POPUP_ID}`);
 
     if (!roomPopup) return;
-    console.log(roomPopup);
+    setCurrentRoom({ name, spots, thumbnail });
     roomPopup.showModal();
   };
 

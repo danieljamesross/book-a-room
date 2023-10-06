@@ -4,7 +4,8 @@ import { useState } from 'react';
 
 import CloseIcon from '@mui/icons-material/Close';
 
-import { RoomProps } from '@/components/room';
+import { useBookingContext } from '@/contexts/bookingContext';
+
 import Button from '@/components/ui/button';
 
 import styles from './room-popup.module.css';
@@ -12,7 +13,10 @@ import styles from './room-popup.module.css';
 const NUM_SEATS = 'num-seats';
 export const POPUP_ID = 'room-popup';
 
-const RoomPopup = ({ name, spots, thumbnail }: RoomProps) => {
+const RoomPopup = () => {
+  const { currentRoom, updatedRooms, updateRooms, setCurrentRoom } =
+    useBookingContext();
+  const { name, spots, thumbnail } = currentRoom;
   const [booked, setBooked] = useState<false | number>(false);
 
   const handleClose = () => {
@@ -20,13 +24,18 @@ const RoomPopup = ({ name, spots, thumbnail }: RoomProps) => {
     if (!dialog) return;
 
     dialog.close();
+    setCurrentRoom({});
+    setBooked(false);
   };
 
   const handleBook = () => {
     const input = document.querySelector<HTMLInputElement>(`#${NUM_SEATS}`);
-    if (!input) return;
+    if (!input || !name || !thumbnail || !spots) return;
 
     const numSpots = Number(input.value);
+    updateRooms(
+      updatedRooms.set(name, { name, thumbnail, spots: spots - numSpots })
+    );
     setBooked(numSpots);
   };
 
@@ -48,14 +57,16 @@ const RoomPopup = ({ name, spots, thumbnail }: RoomProps) => {
             <>
               <h3 className={styles.dialogTitle}>Congratulations!</h3>
               <p className={styles.dialogDescription}>
-                {`You have booked ${booked} spots in ${name}`}
+                {`You have booked ${booked} spots in ${name}.`}
+              </p>
+              <p className={styles.dialogDescription}>
+                {`There are ${spots - booked} spots left`}
               </p>
               <Button onClick={handleClose}>Close</Button>
             </>
           ) : (
             <>
               <h3 className={styles.dialogTitle}>{name}</h3>
-
               <p className={styles.dialogDescription}>Spots left: {spots}</p>
               <div className={styles.details}>
                 <label htmlFor={NUM_SEATS}>Number of seats to book</label>
