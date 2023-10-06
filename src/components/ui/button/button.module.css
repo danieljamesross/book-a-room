@@ -1,0 +1,23 @@
+.button {
+  background-color: var(--color-accent);
+  border: 0;
+  border-radius: 0.25rem;
+  color: var(--color-text-button);
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  height: 1.8125rem;
+  line-height: 1.5rem;
+  text-align: center;
+  width: 5.625rem;
+}
+
+.button:hover {
+  background-color: var(--color-text-button);
+  color: var(--color-accent);
+  transition:
+    background-color var(--transition-button) ease-in,
+    color var(--transition-button) ease-in;
+}
