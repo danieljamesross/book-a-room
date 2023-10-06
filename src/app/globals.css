@@ -1,6 +1,5 @@
 :root {
-  --breakpoint-tablet: 800px;
-  --breakpoint-desktop: 1200px;
+  --border-radius: 0.6875rem;
   --color-purple: #9f0086;
   --color-black: #222222;
   --color-white: #ffffff;
@@ -11,6 +10,7 @@
   --color-text-secondary: var(--color-grey);
   --color-text-button: var(--color-white);
   --color-accent: var(--color-purple);
+  --size-card-gap: 0.62rem;
   --size-card-height: 13.75rem;
   --size-card-width: 20.5rem;
 

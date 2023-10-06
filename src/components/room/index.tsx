@@ -1,5 +1,6 @@
 'use client';
 
+import { POPUP_ID } from '@/components/room-popup';
 import Button from '@/components/ui/button';
 
 import styles from './room.module.css';
@@ -11,7 +12,13 @@ export interface RoomProps {
 }
 
 const Room = ({ name, spots, thumbnail }: RoomProps) => {
-  const handleClick = () => null;
+  const handleClick = () => {
+    const roomPopup = document.querySelector<HTMLDialogElement>(`#${POPUP_ID}`);
+
+    if (!roomPopup) return;
+    console.log(roomPopup);
+    roomPopup.showModal();
+  };
 
   return (
     <li className={styles.card}>

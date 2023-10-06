@@ -1,7 +1,7 @@
 .card {
   display: flex;
   flex-direction: column;
-  gap: 0.62rem;
+  gap: var(--size-card-gap);
   list-style: none;
   width: stretch;
 }
@@ -10,7 +10,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 0.6875rem;
+  border-radius: var(--border-radius);
   height: var(--size-card-height);
   width: stretch;
 }

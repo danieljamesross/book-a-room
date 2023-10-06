@@ -19,6 +19,11 @@ const Rooms = async () => {
       {parsedRoomsData.map(({ name, spots, thumbnail }) => (
         <Room name={name} spots={spots} thumbnail={thumbnail} key={name} />
       ))}
+      <RoomPopup
+        name={parsedRoomsData[0].name}
+        spots={parsedRoomsData[0].spots}
+        thumbnail={parsedRoomsData[0].thumbnail}
+      />
     </menu>
   );
 };
